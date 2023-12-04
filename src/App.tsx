@@ -1,18 +1,12 @@
-import { RouterProvider, createBrowserRouter} from 'react-router-dom'
+import { RouterProvider} from 'react-router-dom'
 import './app.css'
-import AuthLayerComponent from './Components/AuthLayer/AuthLayerComponent'
-import DashboardComponent from './Components/Dashboard/DashboardComponent';
+import AppRoutes from './AppRoutes';
 
 function App() {
 
-  const router = createBrowserRouter([
-    { path: '/', Component: AuthLayerComponent},
-    { path: '/auth', Component: AuthLayerComponent},
-    { path: '/dashboard', Component: DashboardComponent }
-  ])
 
   return (
-      <RouterProvider router={router}/>
+      <RouterProvider router={AppRoutes}/>
   )
 }
 

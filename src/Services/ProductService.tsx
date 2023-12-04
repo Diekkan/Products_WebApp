@@ -22,4 +22,13 @@ export class ProductService{
                 return new Product();
             })
     }
+
+    getProductById(productId: number): Promise<Product> {
+        return axios.get<Product>(`${this.urlBase}/${productId}`)
+        .then(response => response.data)
+        .catch(error => {
+            console.error(error);
+            return new Product();
+        })
+    }
 }

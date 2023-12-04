@@ -1,19 +1,24 @@
 import { useState } from "react";
 import NavItemComponent from "./NavItem/NavItemComponent";
 
-const NavbarComponent = () => {
+interface NavbarComponentProps{
+    url: string
+}
 
-    const [navItem, setNavItem] = useState("Inventario");
+const NavbarComponent = ({url}: NavbarComponentProps) => {
+
+    const [navItem, setNavItem] = useState(url);
 
     const navItems = [
-        { text: "Inventario", clickFun: setNavItem },
-        { text: "Ventas", clickFun: setNavItem },
-        { text: "Estadísticas", clickFun: setNavItem },
+        { text: "Inventario", clickFun: setNavItem, url: '/dashboard'},
+        { text: "Ventas", clickFun: setNavItem, url: '/sales' },
+        { text: "Estadísticas", clickFun: setNavItem, url: '/analytics' },
     ]
 
     const navItemsDown = [
-        { text: "Configuración", clickFun: setNavItem },
-        { text: "Usuario", clickFun: setNavItem },
+        { text: "Control de usuarios", clickFun: setNavItem, url: '/user-manager'},
+        { text: "Configuración", clickFun: setNavItem, url: '/settings'},
+        { text: "Usuario", clickFun: setNavItem, url: '/user'},
     ]
 
     return (
@@ -21,8 +26,8 @@ const NavbarComponent = () => {
             <div className="mt-16">
                 {
                     navItems.map((item, index) => (
-                        item.text === navItem ?
-                            <NavItemComponent key={index} text={item.text} clickFun={item.clickFun} selected={true} /> :
+                        item.url === navItem ?
+                            <NavItemComponent key={index} text={item.text} clickFun={item.clickFun} url={item.url} selected={true} /> :
                             <NavItemComponent key={index} {...item}></NavItemComponent>
                     ))
                 }
@@ -30,8 +35,8 @@ const NavbarComponent = () => {
             <div className="mb-16">
                 {
                     navItemsDown.map((item, index) => (
-                        item.text === navItem ?
-                            <NavItemComponent key={index} text={item.text} clickFun={item.clickFun} selected={true} /> :
+                        item.url === navItem ?
+                            <NavItemComponent key={index} text={item.text} clickFun={item.clickFun} url={item.url} selected={true} /> :
                             <NavItemComponent key={index} {...item}></NavItemComponent>
                     ))
                 }
